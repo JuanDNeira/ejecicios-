@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Reserva de Viaje</title>
+</head>
+<body>
+    <h1>Formulario de Reserva de Viaje</h1>
+    <form action="/submit_reservation" method="post">
+        <label for="fullname">---Nombre completo---</label><br>
+        <input type="text"required><br>
+
+        <label for="email">---Correo electrónico---</label><br>
+        <input type="email"required><br>
+
+        <label for="package">---Selecciona el paquete turístico---</label><br>
+        <select id="package" name="package" required>
+            <option value="goa">Ir a </option>
+            <option value="goa">Mexico.</option>
+            <option value="goa">Brazil.</option>
+            <option value="goa">Argentina.</option>
+            <option value="goa">Costa Rica.</option>
+            <option value="goa">Ecuador.</option>
+        </select><br>
+
+        <label for="arrivaldate">---Fecha de llegada---</label><br>
+        <input type="date"required><br>
+
+        <label for="persons">---Número de personas---</label><br>
+        <input type="number"  min="1" required><br>
+
+        <label>---¿Qué servicios deseas incluir?---</label><br>
+        <input type="checkbox">
+        <label for="boarding">Alojamiento</label><br>
+        <input type="checkbox">
+        <label for="fooding">Comidas</label><br>
+        <input type="checkbox">
+        <label for="sightseeing">Visitas turísticas</label><br>
+
+        <label for="coupon">---Código de cupón---</label><br>
+        <input type="text" id="coupon" name="coupon"><br>
+
+        <label for="terms">---Acepto los términos y condiciones---:</label><br>
+        <input type="checkbox"required>
+        <label for="terms">Acepto</label>
+        <input type="checkbox">
+        <label for="terms_decline">No acepto</label><br>
+
+        <input type="submit" value="Completar reserva">
+    </form>
+
+    
+    <script>
+        document.querySelector('form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            function customAlert(message) {
+                alert('Reserva exitosa: ' + message);
+            }
+
+            customAlert('¡Tu reserva ha sido registrada con éxito!');
+
+            const form = document.querySelector('form');
+            const inputs = form.getElementsByTagName('input');
+            const textarea = form.getElementsByTagName('textarea')[0];
+            const select = form.getElementsByTagName('select')[0];
+
+            for (let i = 0; i < inputs.length; i++) {
+                if (inputs[i].type.toLowerCase() !== 'submit') {
+                    inputs[i].value = '';
+                }
+            }
+
+            if (textarea) {
+                textarea.value = '';
+            }
+
+            if (select) {
+                select.selectedIndex = 0;
+            }
+        });
+    </script>
+</body>
+</html>

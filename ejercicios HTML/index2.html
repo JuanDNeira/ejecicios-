@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diseño básico de formulario usando HTML</title>
+</head>
+<body>
+    <h1>Diseño básico de formulario usando HTML</h1>
+    <h4>-Detalles personales-</h4>
+    <form style="border: 1px solid black; padding: 20px; width: 30%;"> 
+      <label for="firstName">Nombre:</label><br>
+      <input type="text"  "firstName" name="firstName"><br>
+      <label for="lastName">Apellido:</label><br>
+      <input type="text"  "lastName" name="lastName"><br>
+      <label for="gender">Género:</label><br>
+      <input type="radio"  "male" name="gender" value="male">
+      <label for="male">Masculino</label><br>
+      <input type="radio"  "female" name="gender" value="female">
+      <label for="female">Femenino</label><br>
+      <label for="email">Correo electrónico:</label><br>
+      <input type="email"  "email" name="email"><br>
+      <label for="birthDate">Fecha de nacimiento:</label><br>
+      <input type="date" placeholder="dd-mm-yyyy"><br>
+      <label for="address">Dirección:</label><br>
+      <textarea id="address"></textarea><br>
+      <input type="submit" value="Enviar">
+    </form>
+
+    
+    <script>
+        document.querySelector('form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            function customAlert(message) {
+                alert('Reserva exitosa: ' + message);
+            }
+
+            customAlert('¡Tu reserva ha sido registrada con éxito!');
+
+            const form = document.querySelector('form');
+            const inputs = form.getElementsByTagName('input');
+            const textarea = form.getElementsByTagName('textarea')[0];
+            const select = form.getElementsByTagName('select')[0];
+
+            for (let i = 0; i < inputs.length; i++) {
+                if (inputs[i].type.toLowerCase() !== 'submit') {
+                    inputs[i].value = '';
+                }
+            }
+
+            if (textarea) {
+                textarea.value = '';
+            }
+
+            if (select) {
+                select.selectedIndex = 0;
+            }
+        });
+    </script>
+</body>
+</html>
